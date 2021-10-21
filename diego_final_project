@@ -18,92 +18,85 @@ CITY_DATA = {'chicago': 'chicago.csv',
 
 
 # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
-def get_filtres():
-    print('Hello! Let\'s explore some US bikeshare data!')
-    
-    
-    """
-    Asks user to specify a city, month, and day to analyze.
 
-    Returns:
-        (str) city - name of the city to analyze
-        (str) month - name of the month to filter by, or "all" to apply no month filter
-        (str) day - name of the day of week to filter by, or "all" to apply no day filter
-    """
-    
-    user=city=  month=  day=userDay= userCity = userMonth = ""
-    while user != "no":
-        userCity = input("If you would like to see data for\n"
-        "Chicago please type 1\nfor New York type 2\n for Washington type 3\n ")
-        if userCity == "1":
-            city = "chicago"
-             
-        elif userCity == "2":
-            city = "new york city"
-             
-        elif userCity == "3":
-            city = "washington"
-             
+def get_filters():
 
-        userDay = input("if want to filter by day,select a number from 1 to 7, otherwise  type none,:\n 1.Monday \n 2.Tuesday\n 3.Wdnesday"
-                        "\n 4. Thursday \n 5 Friday\n 6.Saturday \n 7 Sunday\n  ")
-
-        if userDay == "1":
-            day = "monday"
-             
-        elif userDay == str(2):
-            day = "tuesday"
-             
-        elif userDay == '3':
-            day = "Wednesday"
-             
-        elif userDay == '4':
-            day = "thursday"
-             
-        elif userDay == '5':
-            day = "friday"
-             
-        elif userDay == '6':
-            day = "saturday"
-             
-        elif userDay == '7':
-            day = "sunday"
-        elif userDay == 'none':
-            day = "all"    
-            
-
-        userMonth = input("if you do not want to use filter type: none \n but if you want to choose a month, please select a number for:\n 1.January \n 2.February\n 3.March"
-                          "\n 4. April \n 5 May \n 6.June \n 7 July\n ")
-
-        if userMonth == "1":
-            month = "january"
-             
-        elif userMonth == "2":
-            month = "february"
-           
-        elif userMonth == "3":
-            month = "march"
-             
-        elif userMonth == "4":
-            month = "april"
-           
-        elif userMonth == "5":
-            month = "may"
-             
-        elif userMonth == "6":
-            month = "june"
-            
-        elif userMonth == "none":
-            month = "all"    
-        print("you have chosen:","\nCity : ", city,"\nMonth : ", month, "\nDay : ",day)
-        print('-'*40)
-             
-        
-        # print("Return Values: ",city,month,day)
-
-        return city, month, day
+    answer_pool = ["0","1"]
+    user_day_pool=["1","2","3","4","5","6","7",'none']
+    user_month_pool=["1","2","3","4","5","6",'none']
+    userMonth=" "
+    answer=1
+    city = day = month =""
+    while answer==1:
+        userCity = input("Please type the name if the city you want to see data from \nchicago \nNew york \nWashington \n ")
+        print("*"*40)
+        while userCity not in CITY_DATA:
+            print("seems you not choose proper city, please try again")
+            userCity = input("Please type the name if the city you want to see data from \nchicago \nNew york \nWashington \n ")
+            print("*"*40)
+        if userCity.lower()== "chicago":
+            city="chicago"
+        elif userCity.lower()== "new york":
+            city="new_york"
+        elif userCity.lower()== "washington":
+            city="Washinton"
 
 
+        userDay = input("if want to filter by day,select a number from 1 to 6, otherwise  type none,:\n 1.Monday \n 2.Tuesday\n 3.Wdnesday"
+                            "\n 4. Thursday \n 5 Friday\n 6.Saturday \n 7 Sunday\n  ")
+        while userDay not in user_day_pool:
+            print("seems you not choose proper number between 1 and 7, please try again\n")
+            print("Seems you did not choose on of the options from the menu, please try again\n")
+            userDay = input("if want to filter by day,select a number from 1 to 6, otherwise  type none,:\n 1.Monday \n 2.Tuesday\n 3.Wdnesday"
+                                "\n 4. Thursday \n 5 Friday\n 6.Saturday \n 7 Sunday\n  ")
+            print("*"*40)
+        if userDay== "1":
+            day= "Monday"
+        elif userDay== "2":
+            day="tuesday"
+        elif userDay== "3":
+            print("Wednesday")
+        elif userDay== "4":
+            print("Thursday")
+        elif userDay== "5":
+            print("friday")
+        elif userDay== 6:
+            print("saturday")
+        elif userDay== 7:
+            print("sunday")
+
+        userMonth = input("if you want to filter by month, please select a number from 1 to 6, in case you want all month, please type none,:\n 1.January \n 2.February\n 3.March"
+                                "\n 4. April \n 5 May\n 6.Junio \n 7 none\n  ")
+        while userMonth not in user_month_pool:
+            print("seems you not choose proper number between 1 and 6, please try again")
+            print("Seems you did not choose on of the options from the menu, please try again")
+            userMonth = input("if want to filter by month,select a number from 1 to 6, otherwise  type none,:\n 1.January \n 2.February\n 3.March"
+                                "\n 4. April \n 5 May\n 6.Junio \n 7 none\n  ")
+            print("*"*40)
+        if userMonth== "1":
+            month="January"
+        elif userMonth== "2":
+            month="February"
+        elif userMonth== "3":
+            month="March"
+        elif userMonth== "4":
+            month="April"
+        elif userMonth== "5":
+            month="May"
+        elif userMonth== 6:
+            month="June"
+        elif userMonth== 7:
+            month="none"
+
+
+        '''This is for testing porpuses
+        print(city, day, month)
+        '''
+        answer= input("1 TO TRY AGAIN,  0 TO QUIT")
+        while answer not in answer_pool:
+            answer= input("1 TO TRY AGAIN,  0 TO QUIT")
+            '''this is the end of the get_filters method'''
+        return city, day, month
 
 
 def load_data(city, month, day):
