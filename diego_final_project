@@ -6,10 +6,10 @@ import numpy as np
   Explore US Bikeshare data.
   By Diego Fernando Sanabria.
   date:  Oct 19 2021.
-  
-  UDACITY 
+
+  UDACITY
   Programming for datascience with Python.
-  
+
 """
 
 CITY_DATA = {'chicago': 'chicago.csv',
@@ -165,7 +165,7 @@ def time_stats(df):
 
     print("The most popular month is: {0}\nThe most popular day is: {1}\nThe most popular hour  is: {2}".format(
         common_month, popular_day, popular_hour))
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -175,7 +175,7 @@ def time_stats(df):
 
 
 def station_stats(df):
-    
+
     '''Display statistics on the most popular stations and trip.
 
     Prints:
@@ -185,10 +185,10 @@ def station_stats(df):
     '''
 
 
-    
+
     print("Calculating the most popular stations and Trip")
     start_time=time.time()
-    
+
     popular_start_station = df['Start Station'].mode()
     print("Most popular Start Station", popular_start_station)
 
@@ -200,11 +200,11 @@ def station_stats(df):
     end_station = df['End Station']
 
     newcol = start_station + end_station
-    popular_combination= newcol.mode() 
-    
+    popular_combination= newcol.mode()
+
     print("Most popular combination ", popular_combination)
-    
-    
+
+
     #print(df.head(3))
 
     #print(newcol)
@@ -213,27 +213,27 @@ def station_stats(df):
 
 
 def trip_duration_stats(df):
-    '''This method is in charge of displaying the duration of trips, 
+    '''This method is in charge of displaying the duration of trips,
 
     Prints:
         1- it calculates the total travel time.
         2- The mean travel time.
-        
+
     '''
     print("Calculating  Trip  duration")
     start_time=time.time()
-    
-    
+
+
     trip_duration_column = df['Trip Duration']
 
     # print(df.columns)
-     
+
     total = trip_duration_column.sum()
     print("The total durations of all the trips   : ", total)
 
     mean = trip_duration_column.mean()
     print("The mean travel time is : ", mean)
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -246,15 +246,15 @@ def user_stats(df):
         2- The most recent year of birth of the users.
         3- and the most popular year of birth os the users.
     '''
-    
-    
-    
-    
-    
+
+
+
+
+
     print("Calculating User Stats...\n")
     start_time=time.time()
     # Count of user types
-  
+
     ut = df["User Type"]
     print("What is the breakdown of users: \n", ut.value_counts())
 
@@ -265,18 +265,18 @@ def user_stats(df):
     print("Earlist year of birth", year.min())
     print("Recent year of birth", year.max())
     print("The most common year of birth", year.mode())
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
-    
+
+
 
 def main():
     '''Finnally here is where all the magic happends
-    
-    this method create the variables in order to put in to the filter, that 
+
+    this method create the variables in order to put in to the filter, that
     the it will be passed through the other statistical methods.
-    
+
     '''
     while True:
         city, month, day = get_filtres()
@@ -287,7 +287,7 @@ def main():
         print("Station Statistics")
         print('='*40)
         station_stats(df)
-        
+
         print("Trip duration Statistics")
         print('='*40)
         trip_duration_stats(df)
@@ -300,6 +300,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
