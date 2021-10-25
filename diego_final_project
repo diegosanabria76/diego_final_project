@@ -14,90 +14,99 @@ import numpy as np
 """
 
 CITY_DATA = {'chicago': 'chicago.csv',
-             'new york city': 'new_york_city.csv',
+             'new york': 'new_york_city.csv',
              'washington': 'washington.csv'}
 
 
 # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
 
 def get_filters():
+    
 
     answer_pool = ["0","1"]
-    user_day_pool=["1","2","3","4","5","6","7",'none']
-    user_month_pool=["1","2","3","4","5","6",'none']
+    user_day_pool=["1","2","3","4","5","6","7",'8']
+    user_month_pool=["1","2","3","4","5","6",'7']
     userMonth=" "
-    answer=1
+
     city = day = month =""
-    while answer==1:
+  
+        
+    userCity = input("Please type the name of the city you want to see data from: \nChicago \nNew york \nWashington \n ")
+    print("*"*40)
+
+    while userCity.lower() not in CITY_DATA:
+        print("seems you not choose proper city, please try again")
         userCity = input("Please type the name if the city you want to see data from \nchicago \nNew york \nWashington \n ")
         print("*"*40)
-        while userCity not in CITY_DATA:
-            print("seems you not choose proper city, please try again")
-            userCity = input("Please type the name if the city you want to see data from \nchicago \nNew york \nWashington \n ")
-            print("*"*40)
-        if userCity.lower()== "chicago":
-            city="chicago"
-        elif userCity.lower()== "new york":
-            city="new_york"
-        elif userCity.lower()== "washington":
-            city="Washinton"
+    if userCity.lower()== "chicago":
+        city="chicago"
+    elif userCity.lower()== "new york":
+        city="new york"
+    elif userCity.lower()== "washington":
+        city="washington"
 
 
+    userDay = input("if want to filter by day,select a number from 1 to 7, otherwise  8 for all days ,:\n 1.Monday \n 2.Tuesday\n 3.Wdnesday"
+                        "\n 4. Thursday \n 5 Friday\n 6.Saturday \n 7 Sunday\n 8 All days ")
+    while userDay not in user_day_pool:
+        print("seems you not choose proper number between 1 and 7, please try again\n")
+        print("Seems you did not choose on of the options from the menu, please try again\n")
         userDay = input("if want to filter by day,select a number from 1 to 6, otherwise  type none,:\n 1.Monday \n 2.Tuesday\n 3.Wdnesday"
                             "\n 4. Thursday \n 5 Friday\n 6.Saturday \n 7 Sunday\n  ")
-        while userDay not in user_day_pool:
-            print("seems you not choose proper number between 1 and 7, please try again\n")
-            print("Seems you did not choose on of the options from the menu, please try again\n")
-            userDay = input("if want to filter by day,select a number from 1 to 6, otherwise  type none,:\n 1.Monday \n 2.Tuesday\n 3.Wdnesday"
-                                "\n 4. Thursday \n 5 Friday\n 6.Saturday \n 7 Sunday\n  ")
-            print("*"*40)
-        if userDay== "1":
-            day= "Monday"
-        elif userDay== "2":
-            day="tuesday"
-        elif userDay== "3":
-            print("Wednesday")
-        elif userDay== "4":
-            print("Thursday")
-        elif userDay== "5":
-            print("friday")
-        elif userDay== 6:
-            print("saturday")
-        elif userDay== 7:
-            print("sunday")
+        print("*"*40)
+    if userDay== "1":
+        day= "monday"
+    elif userDay== "2":
+        day="tuesday"
+    elif userDay== "3":
+        day="wednesday"
+    elif userDay== "4":
+        day="thursday"
+    elif userDay== "5":
+        day="friday"
+    elif userDay== "6":
+        day="saturday"
+    elif userDay== "7":
+        day= "sunday"
+    elif userDay== "8":
+        day="all"   
 
-        userMonth = input("if you want to filter by month, please select a number from 1 to 6, in case you want all month, please type none,:\n 1.January \n 2.February\n 3.March"
-                                "\n 4. April \n 5 May\n 6.Junio \n 7 none\n  ")
-        while userMonth not in user_month_pool:
-            print("seems you not choose proper number between 1 and 6, please try again")
-            print("Seems you did not choose on of the options from the menu, please try again")
-            userMonth = input("if want to filter by month,select a number from 1 to 6, otherwise  type none,:\n 1.January \n 2.February\n 3.March"
-                                "\n 4. April \n 5 May\n 6.Junio \n 7 none\n  ")
-            print("*"*40)
-        if userMonth== "1":
-            month="January"
-        elif userMonth== "2":
-            month="February"
-        elif userMonth== "3":
-            month="March"
-        elif userMonth== "4":
-            month="April"
-        elif userMonth== "5":
-            month="May"
-        elif userMonth== 6:
-            month="June"
-        elif userMonth== 7:
-            month="none"
+    userMonth = input("if you want to filter by month, please select a number from 1 to 6, in case you want all month, please select 7,:\n 1.January \n 2.February\n 3.March"
+                            "\n 4. April \n 5 May\n 6.June \n 7 All months\n  ")
+    while userMonth not in user_month_pool:
+        print("seems you not choose proper number between 1 and 6, please try again")
+        print("Seems you did not choose on of the options from the menu, please try again")
+        userMonth = input("if want to filter by month,select a number from 1 to 6, otherwise  type none,:\n 1.January \n 2.February\n 3.March"
+                            "\n 4. April \n 5 May\n 6.Junio \n 7 none\n  ")
+        print("*"*40)
+    if userMonth== "1":
+        month="january"
+    elif userMonth== "2":
+        month="february"
+    elif userMonth== "3":
+        month="march"
+    elif userMonth== "4":
+        month="april"
+    elif userMonth== "5":
+        month="may"
+    elif userMonth== "6":
+        month="june"
+    elif userMonth== "7":
+        month="all"
+            
 
 
-        '''This is for testing porpuses
-        print(city, day, month)
-        '''
-        answer= input("1 TO TRY AGAIN,  0 TO QUIT")
+        '''This is for testing purposes
+       
+        print("You have chosen: \n City:",city,"\nMonth:",month,"\nDay:", day )
+       
+        answer= input("type  0 To see the data")
         while answer not in answer_pool:
-            answer= input("1 TO TRY AGAIN,  0 TO QUIT")
-            '''this is the end of the get_filters method'''
-        return city, day, month
+            
+            answer= input("Please type  0 to see the data")
+            this is the end of the get_filters method'''
+            
+    return city,month,day
 
 
 def load_data(city, month, day):
@@ -160,9 +169,9 @@ def time_stats(df):
     df['day'] = df['Start Time'].dt.day
     df['hour'] = df['Start Time'].dt.hour
 
-    common_month = df['month'].mode()[0]
-    popular_day = df['day'].mode()[0]
-    popular_hour = df['hour'].mode()[0]
+    common_month = df['month'].mode()
+    popular_day = df['day'].mode()
+    popular_hour = df['hour'].mode()
 
     print("The most popular month is: {0}\nThe most popular day is: {1}\nThe most popular hour  is: {2}".format(
         common_month, popular_day, popular_hour))
@@ -258,16 +267,24 @@ def user_stats(df):
 
     ut = df["User Type"]
     print("What is the breakdown of users: \n", ut.value_counts())
-
-    gender = df["Gender"]
-    print("Count of gender : \n", gender.value_counts())
-
-    year = df['Birth Year']
-    print("Earlist year of birth", year.min())
-    print("Recent year of birth", year.max())
-    print("The most common year of birth", year.mode())
-
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    
+    
+    try:
+        gender = df["Gender"]
+        print("Count of gender : \n", gender.value_counts())
+    except KeyError:
+        print("Gender column does not exist on this dataset!")
+        
+    try:
+        year = df['Birth Year']
+        print("Earlist year of birth", year.min())
+        print("Recent year of birth", year.max())
+        print("The most common year of birth", year.mode())
+        print("\nThis took %s seconds." % (time.time() - start_time))
+        
+    except KeyError:
+        print("Birth year column does not exist on this dataset!")
+        
     print('-'*40)
 
 
@@ -280,7 +297,7 @@ def main():
 
     '''
     while True:
-        city, month, day = get_filtres()
+        city, month, day = get_filters()
         df = load_data(city,month,day)
         print("time Statistics")
         print('='*40)
